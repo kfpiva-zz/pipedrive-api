@@ -1,0 +1,36 @@
+__author__ = 'Kaka'
+#!/usr/bin/env python
+#
+# pip install pypipedrive
+#
+from pypipedrive import PipeDrive
+import json
+
+p = PipeDrive("TOKEN")
+
+d = p.organizations()
+d2 = p.deals()
+
+def myprint(d,d2,k1,k2):
+
+#primeiro argumento organizacoes e segundo argumento deals
+
+  for k, v in d.iteritems():
+
+                if k == 'data':
+                  for myval in v:
+                    for k0, v0 in d2.iteritems():
+                       # for 'additional_data':
+                         # for teste in v0:
+                              if k0 == 'data':
+                                for myval0 in v0:
+                                    #print myval
+                                    a = myval0['org_id']
+                                    #print a
+                                    if myval['id'] == a['value']:
+                                        print myval0[k2],a['value'], myval[k1], myval['owner_name'], myval0['status'], myval0['activities_count']
+
+
+
+myprint(d,d2,'TOKEN','id')
+
